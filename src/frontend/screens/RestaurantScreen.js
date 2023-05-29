@@ -13,6 +13,7 @@ const RestaurantScreen = () => {
    let item = params
    return (
       <View>
+         <StatusBar style="light" />
          <CartIcon />
          <ScrollView>
             <View className="relative">
