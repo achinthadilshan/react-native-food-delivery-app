@@ -1,16 +1,25 @@
 import { View, Text, ScrollView, Image, Pressable } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { COLORS } from '../theme'
 import DishRow from '../components/DishRow'
 import CartIcon from '../components/CartIcon'
+import { useDispatch } from 'react-redux'
+import { setRestaurant } from '../slices/RestaurantSlice'
 
 const RestaurantScreen = () => {
    const { params } = useRoute()
    const navigation = useNavigation()
    let item = params
+   const dispatch = useDispatch()
+
+   useEffect(() => {
+      if (item && item.id) {
+         dispatch(setRestaurant({ ...item }))
+      }
+   }, [])
    return (
       <View>
          <StatusBar style="light" />

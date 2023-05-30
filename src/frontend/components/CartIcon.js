@@ -2,9 +2,13 @@ import { View, Text, Pressable } from 'react-native'
 import React from 'react'
 import { COLORS } from '../theme'
 import { useNavigation } from '@react-navigation/native'
+import { useSelector } from 'react-redux'
+import { selectCartItems } from '../slices/CartSlice'
 
 const CartIcon = () => {
    const navigation = useNavigation()
+   const cartItems = useSelector(selectCartItems)
+   if (!cartItems.lenght) return
    return (
       <View className="absolute bottom-5 z-50 w-full">
          <Pressable
